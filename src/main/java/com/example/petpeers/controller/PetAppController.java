@@ -1,14 +1,12 @@
 package com.example.petpeers.controller;
 
-import javax.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.petpeers.entity.User;
@@ -33,7 +31,7 @@ public class PetAppController {
 	}
 	
 	@PostMapping("/user/authenticate")
-	public ResponseEntity<String> authenticateUser(@PathParam("username") String username,@PathParam("password") String password){
+	public ResponseEntity<String> authenticateUser(@RequestParam String username,@RequestParam String password){
 		User user = new User();
 		user.setUserName(username);
 		user.setConfirmPassword(password);
@@ -41,9 +39,9 @@ public class PetAppController {
 		return login;
 	}
 
-	@PostMapping("/pets/petDetail")
-	public PetDto petDetail(@RequestBody PetDto petDto) {
-			petDto = petservice.getPetById(petDto.getId());
+	@PostMapping("/pets/petDetail/{petid}")
+	public PetDto petDetail(@RequestParam Long id) {
+			 PetDto petDto = petservice.getPetById(id);
 			return petDto;			
 	}
 }

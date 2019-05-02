@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends JpaRepository<com.example.petpeers.entity.User, Long> {
 	
-	@Query(value="select * from user_details where username=?1 and password=?2",nativeQuery=true)
-	com.example.petpeers.entity.User authenticate(String username,String user_password);
+	@Query(value="select * from user_details where user_name=?1 and password=?2",nativeQuery=true)
+	com.example.petpeers.entity.User authenticate(String username,String password);
 	
 }

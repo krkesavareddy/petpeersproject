@@ -23,8 +23,7 @@ public class Pet implements Serializable{
 	private String place;
 	private int age;
 	
-	@ManyToOne
-	@JoinColumn(name="user_id")
+
 	private User owner;
 	
 	public Long getPetId() {
